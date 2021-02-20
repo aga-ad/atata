@@ -62,7 +62,7 @@ public class InputUtils {
 
     public static ArrayList<TradingPoint> getTradingPoints() {
         ArrayList<TradingPoint> result = new ArrayList<>();
-        try (CSVReader reader = new CSVReader(new FileReader("schedule.csv"))) {
+        try (CSVReader reader = new CSVReader(new FileReader("spotsToVisit.csv"))) {
             List<String[]> r = reader.readAll();
             for (String[] line : r) {
                 if ("Мерчендайзер (ФИО)".equals(line[0]))

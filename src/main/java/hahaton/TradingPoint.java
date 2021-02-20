@@ -29,12 +29,15 @@ public class TradingPoint {
             if ("".equals(line[i + 5]))
                 schedule[i] = 1;
         }
+        int visitCount = 0;
+        if (!"".equals(line[11]))
+            visitCount = Integer.parseInt(line[11]);
         return new TradingPoint(line[1],
                 line[2],
                 InputUtils.parseSeconds(line[3]),
                 line[4],
                 schedule,
-                Integer.parseInt(line[11]));
+                visitCount);
     }
 
 
