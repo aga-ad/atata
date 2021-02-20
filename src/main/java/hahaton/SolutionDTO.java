@@ -21,6 +21,12 @@ public class SolutionDTO {
         agentPool = new AgentPool();
     }
 
+    public SolutionDTO(TradingPointPool tradingPointPool) {
+        this.tradingPointPool = tradingPointPool;
+        paths = new ArrayList<>();
+        agentPool = new AgentPool();
+    }
+
     public int getAgentsCount() {
         return agentPool.getAgentsCount();
     }
@@ -53,8 +59,8 @@ public class SolutionDTO {
             this.visitCount = visitCount;
             this.nextPointDistance = nextPointDistance;
         }
-        
-        
+
+
     }
 
     public Entry parse(String[] line) {
@@ -80,8 +86,8 @@ public class SolutionDTO {
                 nextPointDistance);
     }
 
-    public static SolutionDTO parse(List<String[]> lines) {
-        SolutionDTO solutionDTO = new SolutionDTO();
+    public static SolutionDTO parse(List<String[]> lines, TradingPointPool pool) {
+        SolutionDTO solutionDTO = new SolutionDTO(pool);
         for (String[] line : lines) {
             if ("Дата посещения".equals(line[0]))
                 continue;

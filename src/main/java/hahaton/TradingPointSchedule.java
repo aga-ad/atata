@@ -17,9 +17,9 @@ public class TradingPointSchedule {
     public final int visitsCount;
     public final VisitDay visitDay;
     public final int agentId;
-    public final int stayingTime;
+    public final int stayingTimeInMinutes;
 
-    public TradingPointSchedule(int tradingPointCode, String name, String clientName, String networkCode, String clientAddress, String latitude, String longitude, int visitsCount, VisitDay visitDay, int agentId, int stayingTime) {
+    public TradingPointSchedule(int tradingPointCode, String name, String clientName, String networkCode, String clientAddress, String latitude, String longitude, int visitsCount, VisitDay visitDay, int agentId, int stayingTimeInMinutes) {
         this.tradingPointCode = tradingPointCode;
         this.name = name;
         this.clientName = clientName;
@@ -30,10 +30,10 @@ public class TradingPointSchedule {
         this.visitsCount = visitsCount;
         this.visitDay = visitDay;
         this.agentId = agentId;
-        this.stayingTime = stayingTime;
+        this.stayingTimeInMinutes = stayingTimeInMinutes;
     }
-    
-    public static TradingPointSchedule parseLine(String[] line, AgentPool pool) throws IOException {
+
+    public static TradingPointSchedule parseLine(String[] line, AgentPool agentPool, TradingPointPool pool) throws IOException {
         int tradingPointCode = Integer.parseInt(line[0]);
         String name = line[2];
         String clientName = line[3];
@@ -43,8 +43,10 @@ public class TradingPointSchedule {
         String longitude = line[7];
         int visitsCount = Integer.parseInt("0" + line[8]);
         VisitDay visitDay = VisitDay.parse(line[9]);
-        int agentId = pool.getId(line[10]);
-        int stayingTime = Integer.parseInt(line[11]);
+        int agentId = agentPool.getId(line[10]);
+        int stayingTimeInMinutes = Integer.parseInt(line[11]);
+        pool.getId(name);
+        pool.setStayingTimeInSeconds(tradingPointCode, stayingTimeInMinutes * 1000);
         return new TradingPointSchedule(tradingPointCode,
                 name,
                 clientName,
@@ -55,7 +57,7 @@ public class TradingPointSchedule {
                 visitsCount,
                 visitDay,
                 agentId,
-                stayingTime);
+                stayingTimeInMinutes);
     }
 
     @Override
@@ -71,7 +73,7 @@ public class TradingPointSchedule {
                 ", visitsCount=" + visitsCount +
                 ", visitDay=" + visitDay +
                 ", agentId=" + agentId +
-                ", stayingTime=" + stayingTime +
+                ", stayingTime=" + stayingTimeInMinutes +
                 '}';
     }
 }

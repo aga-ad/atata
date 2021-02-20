@@ -35,14 +35,14 @@ public class InputUtils {
         return result;
     }
 
-    public static ArrayList<TradingPointSchedule> getTradingPointSchedules(AgentPool pool) {
+    public static ArrayList<TradingPointSchedule> getTradingPointSchedules(AgentPool agentPool, TradingPointPool pool) {
         ArrayList<TradingPointSchedule> result = new ArrayList<>();
         try (CSVReader reader = new CSVReader(new FileReader("schedule.csv"))) {
             List<String[]> r = reader.readAll();
             for (String[] line : r) {
                 if ("Код ТТ".equals(line[0]))
                     continue;
-                result.add(TradingPointSchedule.parseLine(line, pool));
+                result.add(TradingPointSchedule.parseLine(line, agentPool, pool));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -50,24 +50,24 @@ public class InputUtils {
         return result;
     }
 
-    public static SolutionDTO getSolution() {
+    public static SolutionDTO getSolution(TradingPointPool tradingPointPool) {
         try (CSVReader reader = new CSVReader(new FileReader("baseline.csv"))) {
             List<String[]> r = reader.readAll();
-            return SolutionDTO.parse(r);
+            return SolutionDTO.parse(r, tradingPointPool);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public static ArrayList<TradingPoint> getTradingPoints() {
+    public static ArrayList<TradingPoint> getTradingPoints(TradingPointPool tradingPointPool) {
         ArrayList<TradingPoint> result = new ArrayList<>();
         try (CSVReader reader = new CSVReader(new FileReader("spotsToVisit.csv"))) {
             List<String[]> r = reader.readAll();
             for (String[] line : r) {
                 if ("Мерчендайзер (ФИО)".equals(line[0]))
                     continue;
-                result.add(TradingPoint.parse(line));
+                result.add(TradingPoint.parse(line, tradingPointPool));
             }
         } catch (Exception e) {
             e.printStackTrace();

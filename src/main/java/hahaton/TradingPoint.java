@@ -23,7 +23,7 @@ public class TradingPoint {
         this.visitCount = visitCount;
     }
 
-    public static TradingPoint parse(String[] line) {
+    public static TradingPoint parse(String[] line, TradingPointPool pool) {
         int[] schedule = new int[7];
         for (int i = 0; i < 7; i++) {
             if ("".equals(line[i + 5]))
@@ -32,7 +32,10 @@ public class TradingPoint {
         int visitCount = 0;
         if (!"".equals(line[11]))
             visitCount = Integer.parseInt(line[11]);
-        return new TradingPoint(line[1],
+        String name = line[1];
+        int id = pool.getId(name);
+        pool.setSchedule(id, schedule);
+        return new TradingPoint(name,
                 line[2],
                 InputUtils.parseSeconds(line[3]),
                 line[4],
