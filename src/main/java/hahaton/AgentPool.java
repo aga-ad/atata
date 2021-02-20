@@ -23,6 +23,10 @@ public class AgentPool {
         return name2id.get(str);
     }
 
+    public int getAgentsCount() {
+        return nf;
+    }
+
     public String getName(int id) {
         return id2name.get(id);
     }

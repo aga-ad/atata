@@ -1,14 +1,14 @@
 package hahaton;
 
 public enum VisitDay {
-    EMPTY,
     MONDAY,
     TUESDAY,
     WEDNESDAY,
     THURSDAY,
     FRIDAY,
     SATURDAY,
-    SUNDAY;
+    SUNDAY,
+    EMPTY;
 
     public static VisitDay parse(String str) {
         if ("".equals(str))

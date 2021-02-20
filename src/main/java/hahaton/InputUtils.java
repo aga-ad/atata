@@ -50,10 +50,10 @@ public class InputUtils {
         return result;
     }
 
-    public static Solution getSolution() {
+    public static SolutionDTO getSolution() {
         try (CSVReader reader = new CSVReader(new FileReader("baseline.csv"))) {
             List<String[]> r = reader.readAll();
-            return Solution.parse(r);
+            return SolutionDTO.parse(r);
         } catch (Exception e) {
             e.printStackTrace();
         }
