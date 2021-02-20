@@ -18,14 +18,14 @@ public class InputUtils {
     /**
      * @return distances matrix in minutes
      */
-    public static ArrayList<ArrayList<Double>> getDistances() {
-        ArrayList<ArrayList<Double>> result = new ArrayList<>();
+    public static ArrayList<ArrayList<Long>> getDistances() {
+        ArrayList<ArrayList<Long>> result = new ArrayList<>();
         try (CSVReader reader = new CSVReader(new FileReader("distances.csv"))) {
             List<String[]> r = reader.readAll();
             for (String[] line : r) {
-                ArrayList<Double> lineDistances = new ArrayList<>();
+                ArrayList<Long> lineDistances = new ArrayList<>();
                 for (String adjStr : line) {
-                    lineDistances.add(Double.parseDouble(adjStr) / 1_000_000.0);
+                    lineDistances.add(Long.parseLong(adjStr));
                 }
                 result.add(lineDistances);
             }

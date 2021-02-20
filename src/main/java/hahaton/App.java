@@ -7,9 +7,9 @@ import java.util.ArrayList;
  */
 public class App {
     public static void main(String[] args) {
-        ArrayList<ArrayList<Double>> distances = InputUtils.getDistances();
-        for (ArrayList<Double> row : distances) {
-            for (Double ij : row) {
+        ArrayList<ArrayList<Long>> distances = InputUtils.getDistances();
+        for (ArrayList<Long> row : distances) {
+            for (Long ij : row) {
                 System.out.println(ij);
             }
         }
