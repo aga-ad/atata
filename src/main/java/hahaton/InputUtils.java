@@ -9,9 +9,6 @@ import java.util.List;
 
 public class InputUtils {
 
-    private static SimpleDateFormat sdf = new SimpleDateFormat("H:m");
-    private static SimpleDateFormat sdfs = new SimpleDateFormat("H:m:s");
-
     private InputUtils() {
     }
 
@@ -77,7 +74,8 @@ public class InputUtils {
 
     public static long parseMinutes(String minutes) {
         try {
-            return sdf.parse(minutes).getTime() / 1000L / 60L;
+            var t = minutes.split(":");
+            return Integer.parseInt(t[0]) * 60L + Integer.parseInt(t[1]);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -86,7 +84,8 @@ public class InputUtils {
 
     public static long parseSeconds(String minutes) {
         try {
-            return sdfs.parse(minutes).getTime() / 1000L;
+            var t = minutes.split(":");
+            return Integer.parseInt(t[0]) * 3600L + Integer.parseInt(t[1]) * 60L + Integer.parseInt(t[2]);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -86,12 +86,12 @@ public class SimulatedAnnealingOptimization {
     }
 
     protected int getOperationsCount(double temperature) {
-        return (int)(Math.log(Math.pow(temperature, 40) + 3.0));
+        return (int) (Math.log(Math.pow(temperature, 40) + 3.0));
     }
 
     protected Solution generateSolutionCandidate(Solution solution, double temperature) {
         Solution candidate = null;
-        int n, day=0, agent1, agent2;
+        int n, day = 0, agent1, agent2;
         Integer tp;
         boolean goodday;
         for (int i = 0; i < getOperationsCount(temperature); i++) {
@@ -164,7 +164,7 @@ public class SimulatedAnnealingOptimization {
             }
         }
 
-        return getInitialSolution();
+        return solution;
     }
 
 }
