@@ -9,9 +9,13 @@ public class Solution {
      * dayid -> agentid -> tradingpoints[]
      */
     List<Integer>[][] visits;
+    ArrayList<Long> agentOfPoint;
+    ArrayList<Long> totalTime;
+    ArrayList<Long> working;
 
     public Solution(List<Integer>[][] visits) {
         this.visits = visits;
+
     }
 
     public Solution(SolutionDTO solutionDTO) {
@@ -23,6 +27,10 @@ public class Solution {
         }
         for (SolutionDTO.Entry entry : solutionDTO.getPaths()) {
             visits[entry.day.ordinal()][entry.agentId].add(entry.tradingPointCode);
+        }
+        totalTime = new ArrayList<>();
+        for (int agentId = 0; agentId < solutionDTO.getAgentsCount(); agentId++) {
+
         }
     }
 
