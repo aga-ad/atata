@@ -55,8 +55,8 @@ public class PenaltyCalculator {
         return failed ? Integer.MAX_VALUE : penalty;
     }
 
-    private static final long maxWorkingDayLengthInSeconds = (9 * 60 + 30) * 60;
+    public static final long maxWorkingDayLengthInSeconds = (9 * 60 + 30) * 60;
 
-    private static final long minWorkingTimeInSeconds = 5 * 60 * 60;
+    public static final long minWorkingTimeInSeconds = 5 * 60 * 60;
 
 }
