@@ -13,6 +13,48 @@ import java.util.HashMap;
 
 public class OutputUtils {
 
+    public static void main(String[] args) {
+        Distances distances = InputUtils.getDistances();
+        for (int i = 1; i <= distances.size(); i++) {
+            System.out.println(distances.row(i)); //ok
+        }
+        System.out.println(distances.get(72, 68));
+
+
+        TradingPointPool tradingPointPool = new TradingPointPool();
+        AgentPool agentPool = new AgentPool();
+        ArrayList<TradingPointSchedule> schedules = InputUtils.getTradingPointSchedules(agentPool, tradingPointPool);
+        for (TradingPointSchedule schedule : schedules) {
+            System.out.println(schedule);
+        }
+
+        System.out.println(InputUtils.getTradingPoints(tradingPointPool));
+
+
+        var solution = InputUtils.getSolution(tradingPointPool);
+
+        var minsInTravel = 0L;
+        for (SolutionDTO.Entry x : solution.getPaths()) {
+            for (SolutionDTO.Entry y : solution.getPaths()) {
+                if (x.agentId == y.agentId && x.day == y.day && x.visitNumberInsideDay + 1 == y.visitNumberInsideDay) {
+                    minsInTravel += y.arrivalTimeInMinutes - (x.arrivalTimeInMinutes + x.stayingTimeInMinutes);
+
+                    System.out.println("--------------------------------");
+                    System.out.println("x" + x.agentId + "|" + x.day + "|" + x.visitNumberInsideDay);
+                    System.out.println("x" + x.arrivalTimeInMinutes + "|" + x.stayingTimeInMinutes);
+                    System.out.println("y" + y.agentId + "|" + y.day + "|" + y.visitNumberInsideDay);
+                    System.out.println("y" + y.arrivalTimeInMinutes + "|" + y.stayingTimeInMinutes);
+                    System.out.println(y.arrivalTimeInMinutes - (x.arrivalTimeInMinutes + x.stayingTimeInMinutes));
+
+                    System.out.println("--------------------------------");
+                    break;
+                }
+            }
+        }
+        System.out.println("!!! " + minsInTravel);
+
+    }
+
     private static String genFileName() {
         LocalDateTime now = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
         return "solution-" + now.toString().replace(":", "-") + ".csv";

@@ -46,8 +46,9 @@ public class SolutionDTO {
         public final int stayingTimeInMinutes;
         public final int visitCount;
         public final double nextPointDistance;
+        public final int visitNumberInsideDay;
 
-        public Entry(String date, VisitDay day, int agentId, int tradingPointCode, String tradingPointName, String tradingPointAddress, int arrivalTimeInMinutes, int stayingTimeInMinutes, int visitCount, double nextPointDistance) {
+        public Entry(String date, VisitDay day, int agentId, int tradingPointCode, String tradingPointName, String tradingPointAddress, int arrivalTimeInMinutes, int stayingTimeInMinutes, int visitCount, double nextPointDistance, int visitNumberInsideDay) {
             this.date = date;
             this.day = day;
             this.agentId = agentId;
@@ -58,6 +59,7 @@ public class SolutionDTO {
             this.stayingTimeInMinutes = stayingTimeInMinutes;
             this.visitCount = visitCount;
             this.nextPointDistance = nextPointDistance;
+            this.visitNumberInsideDay = visitNumberInsideDay;
         }
 
 
@@ -73,6 +75,7 @@ public class SolutionDTO {
         int arrivalTimeInMinutes = (int) InputUtils.parseMinutes(line[6]);
         int stayingTimeInMinutes = (int) InputUtils.parseMinutes(line[7]);
         int visitCount = Integer.parseInt(line[8]);
+        int visitNumberInsideDay = Integer.parseInt(line[3]);
         double nextPointDistance = Double.parseDouble(line[9].replaceAll(",", "."));
         return new Entry(date,
                 day,
@@ -83,7 +86,8 @@ public class SolutionDTO {
                 arrivalTimeInMinutes,
                 stayingTimeInMinutes,
                 visitCount,
-                nextPointDistance);
+                nextPointDistance,
+                visitNumberInsideDay);
     }
 
     public static SolutionDTO parse(List<String[]> lines, TradingPointPool pool) {

@@ -164,7 +164,7 @@ public class SimulatedAnnealingOptimization {
             }
         }
 
-        return getInitialSolution();
+        return solution;
     }
 
 }
