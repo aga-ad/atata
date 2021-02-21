@@ -1,6 +1,12 @@
 package hahaton;
 
+import com.opencsv.CSVWriter;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Solution {
@@ -83,16 +89,5 @@ public class Solution {
         return res;
     }
 
-    public boolean isValid(TradingPointPool tradingPointPool, int agent_id) {
-        return true;
-    }
 
-    public boolean isValid(TradingPointPool tradingPointPool) {
-        for (int i = 0; i < agents(); i++) {
-            if (!isValid(tradingPointPool, i)) {
-                return false;
-            }
-        }
-        return true;
-    }
 }
