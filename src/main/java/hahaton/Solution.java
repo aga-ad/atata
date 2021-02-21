@@ -17,7 +17,7 @@ public class Solution {
     List<Integer>[][] visits;
     ArrayList<Long> agentOfPoint;
     ArrayList<Long> totalTime;
-    ArrayList<Long> working;
+    ArrayList<Long> workingTime;
 
     public Solution(List<Integer>[][] visits) {
         this.visits = visits;
@@ -36,8 +36,12 @@ public class Solution {
         }
         totalTime = new ArrayList<>();
         for (int agentId = 0; agentId < solutionDTO.getAgentsCount(); agentId++) {
-
+            //totalTime.add(Solution.calculateTotalTime(agentId));
+            //workingTime.add(Solution.calculateWorkingTime(agentId));
         }
+
+        agentOfPoint = new ArrayList<>();
+
     }
 
     public List<Integer> getTradingPoints(int dayId, int agentId) {
