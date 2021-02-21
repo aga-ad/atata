@@ -33,10 +33,10 @@ public class Checker {
             System.out.println("Not all trading points visited!");
         }
 
-//        if (!isAllTradingPointsVisited(solution, tradingPointPool)) {
-//            failed = true; //todo another check
-//            System.out.println("Not all trading points visited!");
-//        }
+        if (!isTradingPointsVisitedBuyOneAgent(solution, tradingPointPool)) {
+            failed = true;
+            System.out.println("Not all trading points visited by one agent!");
+        }
 
         System.out.println(failed ? fileName + " is incorrect!" : fileName + " is correct!");
 
@@ -62,6 +62,28 @@ public class Checker {
                     }
                 }
 
+            }
+        }
+        return !failed;
+    }
+
+    private static boolean isTradingPointsVisitedBuyOneAgent(Solution solution, TradingPointPool tradingPointPool) {
+        var failed = false;
+        var tradingPoints = InputUtils.getTradingPoints(tradingPointPool);
+        for (TradingPoint tradingPoint : tradingPoints) {
+            var code = tradingPointPool.getTradingPointCode(tradingPoint.clientName, tradingPoint.clientAddress);
+            var agentId = -1;
+            for (var day = 0; day < solution.days(); day++) {
+                for (var agent = 0; agent < solution.agents(); agent++) {
+                    if (solution.visits[day][agent].contains(code)) {
+                        if (agentId == -1 || agentId == agent)
+                            agentId = agent;
+                        else {
+                            failed = true;
+                            System.out.println("trading point " + tradingPoint + "is visited by different agents " + agent + " and " + agentId);
+                        }
+                    }
+                }
             }
         }
         return !failed;
