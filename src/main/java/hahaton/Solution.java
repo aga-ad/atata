@@ -30,6 +30,14 @@ public class Solution {
         return visits[dayId][agentId];
     }
 
+    public int days() {
+        return visits.length;
+    }
+
+    public int agents() {
+        return visits[0].length;
+    }
+
     public boolean isValid(TradingPointPool tradingPointPool) {
         //9:30
         //only one agent for tradingpoint
