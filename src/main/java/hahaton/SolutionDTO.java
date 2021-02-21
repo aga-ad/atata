@@ -39,7 +39,7 @@ public class SolutionDTO {
         public final String date;
         public final VisitDay day;
         public final int agentId;
-        public final int tradingPointId;
+        public final int tradingPointCode;
         public final String tradingPointName;
         public final String tradingPointAddress;
         public final int arrivalTimeInMinutes;
@@ -47,11 +47,11 @@ public class SolutionDTO {
         public final int visitCount;
         public final double nextPointDistance;
 
-        public Entry(String date, VisitDay day, int agentId, int tradingPointId, String tradingPointName, String tradingPointAddress, int arrivalTimeInMinutes, int stayingTimeInMinutes, int visitCount, double nextPointDistance) {
+        public Entry(String date, VisitDay day, int agentId, int tradingPointCode, String tradingPointName, String tradingPointAddress, int arrivalTimeInMinutes, int stayingTimeInMinutes, int visitCount, double nextPointDistance) {
             this.date = date;
             this.day = day;
             this.agentId = agentId;
-            this.tradingPointId = tradingPointId;
+            this.tradingPointCode = tradingPointCode;
             this.tradingPointName = tradingPointName;
             this.tradingPointAddress = tradingPointAddress;
             this.arrivalTimeInMinutes = arrivalTimeInMinutes;
@@ -69,7 +69,7 @@ public class SolutionDTO {
         int agentId = agentPool.getId(line[2]);
         String tradingPointName = line[4];
         String tradingPointAddress = line[5];
-        int tradingPointId = tradingPointPool.getId(tradingPointName, tradingPointAddress);
+        int tradingPointCode = tradingPointPool.getTradingPointCode(tradingPointName, tradingPointAddress);
         int arrivalTimeInMinutes = (int) InputUtils.parseMinutes(line[6]);
         int stayingTimeInMinutes = (int) InputUtils.parseMinutes(line[7]);
         int visitCount = Integer.parseInt(line[8]);
@@ -77,7 +77,7 @@ public class SolutionDTO {
         return new Entry(date,
                 day,
                 agentId,
-                tradingPointId,
+                tradingPointCode,
                 tradingPointName,
                 tradingPointAddress,
                 arrivalTimeInMinutes,
