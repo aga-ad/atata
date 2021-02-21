@@ -108,7 +108,7 @@ public class SimulatedAnnealingOptimization {
             while (candidate.visits[day][agent1].size() == 0)
                 agent1 = rn.nextInt(n);
 
-            tp = rn.nextInt(candidate.visits[day][agent1].size()) + 1;
+            tp = candidate.visits[day][agent1].get(rn.nextInt(candidate.visits[day][agent1].size()));
             agent2 = rn.nextInt(n);
             if (agent2 == agent1) {
                 for (int dayI = 0; dayI < 7; dayI++) {
