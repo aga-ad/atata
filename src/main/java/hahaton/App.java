@@ -7,23 +7,34 @@ import java.util.ArrayList;
  */
 public class App {
     public static void main(String[] args) {
-        ArrayList<ArrayList<Long>> distances = InputUtils.getDistances();
-        for (ArrayList<Long> row : distances) {
-            for (Long ij : row) {
-                System.out.println(ij);
-            }
+        Distances distances = InputUtils.getDistances();
+        for (int i = 1; i <= distances.size(); i++) {
+            System.out.println(distances.row(i)); //ok
         }
+        System.out.println(distances.get(72, 68));
 
-        TradingPointPool tradingPointPool = new TradingPointPool();
-        AgentPool pool = new AgentPool();
-        ArrayList<TradingPointSchedule> schedules = InputUtils.getTradingPointSchedules(pool, tradingPointPool);
-        for (TradingPointSchedule schedule : schedules) {
-            System.out.println(schedule);
-        }
-        
-        System.out.println(InputUtils.getTradingPoints(tradingPointPool));
-
-        System.out.println(InputUtils.getSolution(tradingPointPool));
+//        TradingPointPool tradingPointPool = new TradingPointPool();
+//        AgentPool agentPool = new AgentPool();
+//        ArrayList<TradingPointSchedule> schedules = InputUtils.getTradingPointSchedules(agentPool, tradingPointPool);
+//        for (TradingPointSchedule schedule : schedules) {
+//            System.out.println(schedule);
+//        }
+//
+//        System.out.println(InputUtils.getTradingPoints(tradingPointPool));
+//
+//        //System.out.println(InputUtils.getSolution(tradingPointPool));
+//        Solution baseline = new Solution(InputUtils.getSolution(tradingPointPool));
+//        for (int day = 0; day < baseline.days(); day++) {
+//            for (int agent = 0; agent < baseline.agents(); agent++) {
+//                if (baseline.getTradingPoints(day, agent).size() == 0) {
+//                    continue;
+//                }
+//                System.out.println(day + " " + agent + "(" + agentPool.getName(agent) + "):");
+//                for (int point: baseline.getTradingPoints(day, agent)) {
+//                    System.out.println(point + " " + tradingPointPool.getName(point));
+//                }
+//            }
+//        }
 
     }
 }

@@ -16,9 +16,9 @@ public class InputUtils {
     }
 
     /**
-     * @return distances matrix in minutes
+     * @return distances matrix in meters
      */
-    public static ArrayList<ArrayList<Long>> getDistances() {
+    public static Distances getDistances() {
         ArrayList<ArrayList<Long>> result = new ArrayList<>();
         try (CSVReader reader = new CSVReader(new FileReader("distances.csv"))) {
             List<String[]> r = reader.readAll();
@@ -32,7 +32,7 @@ public class InputUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return result;
+        return new Distances(result);
     }
 
     public static ArrayList<TradingPointSchedule> getTradingPointSchedules(AgentPool agentPool, TradingPointPool pool) {
