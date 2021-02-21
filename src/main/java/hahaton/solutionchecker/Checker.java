@@ -48,19 +48,20 @@ public class Checker {
         for (TradingPoint tradingPoint : tradingPoints) {
             var code = tradingPointPool.getTradingPointCode(tradingPoint.clientName, tradingPoint.clientAddress);
             for (int day = 0; day < 7; day++) {
-                var count = 0;
                 if (tradingPoint.schedule[day] == 1) {
+                    var count = 0;
                     for (List<Integer> list : solution.visits[day]) {
                         for (Integer tradingPointCode : list) {
                             if (code == tradingPointCode)
                                 count++;
                         }
                     }
+                    if (count != 1) {
+                        System.out.println(tradingPoint + " is not visited at day " + day);
+                        failed = true;
+                    }
                 }
-                if (count != 1) {
-                    System.out.println(tradingPoint + " is not visited at day " + day);
-                    failed = true;
-                }
+
             }
         }
         return !failed;
