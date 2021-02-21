@@ -1,12 +1,6 @@
 package hahaton;
 
-import com.opencsv.CSVWriter;
-
-import java.io.FileWriter;
-import java.io.IOException;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Solution {
@@ -15,6 +9,18 @@ public class Solution {
      * dayid -> agentid -> tradingpoints[]
      */
     List<Integer>[][] visits;
+
+    public Solution() {
+    }
+
+    public Solution(Solution solution) {
+        visits = new List[7][solution.visits[0].length];
+        for (int day = 0; day < 7; day++) {
+            for (int agentId = 0; agentId < solution.visits[0].length; agentId++) {
+                visits[day][agentId] = new ArrayList<>(solution.getTradingPoints(day, agentId));
+            }
+        }
+    }
 
     public Solution(List<Integer>[][] visits) {
         this.visits = visits;
