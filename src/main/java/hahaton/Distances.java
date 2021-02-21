@@ -6,7 +6,7 @@ public class Distances {
     ArrayList<ArrayList<Long>> distances;
 
     public Distances(ArrayList<ArrayList<Long>> distances) {
-        this.distances = distances;
+        this.distances = new ArrayList<ArrayList<Long>>(distances);
     }
 
     public long get(int from, int to) {
