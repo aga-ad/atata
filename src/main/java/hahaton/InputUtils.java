@@ -84,7 +84,7 @@ public class InputUtils {
 
     public static long parseSeconds(String minutes) {
         try {
-            var t = minutes.split(":");
+            var t = minutes.split(" ")[0].split(":");
             return Integer.parseInt(t[0]) * 3600L + Integer.parseInt(t[1]) * 60L + Integer.parseInt(t[2]);
         } catch (Exception e) {
             e.printStackTrace();
