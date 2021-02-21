@@ -99,7 +99,7 @@ public class Solution {
         }
         ArrayList<Integer> res = new ArrayList<Integer>(points);
         for (int i = points.size() - 1; i >= 0; i--) {
-            res.set(i, last);
+            res.set(i, points.get(last));
             int newMask = mask - (1 << last);
             last = prev[mask][last];
             mask = newMask;
