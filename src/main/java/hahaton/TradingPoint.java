@@ -34,7 +34,7 @@ public class TradingPoint {
             visitCount = Integer.parseInt(line[11]);
         String name = line[1];
         String address = line[2];
-        int id = pool.getId(name, address);
+        int id = pool.getTradingPointCode(name, address);
         pool.setSchedule(id, schedule);
         return new TradingPoint(name,
                 address,

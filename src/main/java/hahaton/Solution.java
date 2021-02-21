@@ -22,7 +22,7 @@ public class Solution {
             }
         }
         for (SolutionDTO.Entry entry : solutionDTO.getPaths()) {
-            visits[entry.day.ordinal()][entry.agentId].add(entry.tradingPointId);
+            visits[entry.day.ordinal()][entry.agentId].add(entry.tradingPointCode);
         }
     }
 

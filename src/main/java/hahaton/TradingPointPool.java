@@ -5,48 +5,46 @@ import java.util.Map;
 import java.util.Objects;
 
 public class TradingPointPool {
-    final Map<Integer, TradingPointId> id2name;
-    private final Map<TradingPointId, Integer> name2id;
-    private final Map<Integer, int[]> id2schedule;
-    private final Map<Integer, Integer> id2stayingTimeInSeconds;
-    private int nf;
+    final Map<Integer, TradingPointId> tradingPointCode2name;
+    private final Map<TradingPointId, Integer> name2tradingPointCode;
+    private final Map<Integer, int[]> tradingPointCode2schedule;
+    private final Map<Integer, Integer> tradingPointCode2stayingTimeInSeconds;
 
     public TradingPointPool() {
-        id2name = new HashMap<>();
-        name2id = new HashMap<>();
-        id2schedule = new HashMap<>();
-        id2stayingTimeInSeconds = new HashMap<>();
-        nf = 0;
+        tradingPointCode2name = new HashMap<>();
+        name2tradingPointCode = new HashMap<>();
+        tradingPointCode2schedule = new HashMap<>();
+        tradingPointCode2stayingTimeInSeconds = new HashMap<>();
     }
 
-    public int getId(String clientName, String clientAddress) {
+    public void setTradingPointCode(int tradingPointCode, String clientName, String clientAddress) {
         TradingPointId id = new TradingPointId(clientName, clientAddress);
-        if (!name2id.containsKey(id)) {
-            name2id.put(id, nf);
-            id2name.put(nf, id);
-            nf++;
-        }
-        return name2id.get(id);
+        name2tradingPointCode.put(id, tradingPointCode);
+        tradingPointCode2name.put(tradingPointCode, id);
     }
 
-    public TradingPointId getName(int id) {
-        return id2name.get(id);
+    public int getTradingPointCode(String clientName, String clientAddress) {
+        return name2tradingPointCode.get(new TradingPointId(clientName, clientAddress));
     }
 
-    public void setSchedule(int agentId, int[] schedule) {
-        id2schedule.put(agentId, schedule);
+    public TradingPointId getName(int tradingPointCode) {
+        return tradingPointCode2name.get(tradingPointCode);
     }
 
-    public void setStayingTimeInSeconds(int agentId, int stayingTimeInSeconds) {
-        id2stayingTimeInSeconds.put(agentId, stayingTimeInSeconds);
+    public void setSchedule(int tradingPointCode, int[] schedule) {
+        tradingPointCode2schedule.put(tradingPointCode, schedule);
     }
 
-    public int[] getSchedule(int agentId) {
-        return id2schedule.get(agentId);
+    public void setStayingTimeInSeconds(int tradingPointCode, int stayingTimeInSeconds) {
+        tradingPointCode2stayingTimeInSeconds.put(tradingPointCode, stayingTimeInSeconds);
     }
 
-    public int getStayingTimeInSeconds(int agentId) {
-        return id2stayingTimeInSeconds.get(agentId);
+    public int[] getSchedule(int tradingPointCode) {
+        return tradingPointCode2schedule.get(tradingPointCode);
+    }
+
+    public int getStayingTimeInSeconds(int tradingPointCode) {
+        return tradingPointCode2stayingTimeInSeconds.get(tradingPointCode);
     }
 
 
