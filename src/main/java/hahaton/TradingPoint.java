@@ -33,10 +33,11 @@ public class TradingPoint {
         if (!"".equals(line[11]))
             visitCount = Integer.parseInt(line[11]);
         String name = line[1];
-        int id = pool.getId(name);
+        String address = line[2];
+        int id = pool.getId(name, address);
         pool.setSchedule(id, schedule);
         return new TradingPoint(name,
-                line[2],
+                address,
                 InputUtils.parseSeconds(line[3]),
                 line[4],
                 schedule,
