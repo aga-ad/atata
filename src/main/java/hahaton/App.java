@@ -7,11 +7,17 @@ import java.util.ArrayList;
  */
 public class App {
     public static void main(String[] args) {
-        Distances distances = InputUtils.getDistances();
+
+
+
+
+        /*Distances distances = InputUtils.getDistances();
         for (int i = 1; i <= distances.size(); i++) {
             System.out.println(distances.row(i)); //ok
         }
-        System.out.println(distances.get(72, 68));
+        System.out.println(distances.get(72, 68));*/
+
+
 
 //        TradingPointPool tradingPointPool = new TradingPointPool();
 //        AgentPool agentPool = new AgentPool();

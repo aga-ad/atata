@@ -38,10 +38,61 @@ public class Solution {
         return visits[0].length;
     }
 
-    public boolean isValid(TradingPointPool tradingPointPool) {
-        //9:30
-        //only one agent for tradingpoint
+    public static ArrayList<Integer> TSP(Distances distances, List<Integer> points) {
+        long[][] dp = new long[1 << points.size()][points.size()];
+        int[][] prev = new int[1 << points.size()][points.size()];
+        for (int i = 0; i < (1 << points.size()); i++) {
+            for (int j = 0; j < points.size(); j++) {
+                dp[i][j] = Long.MAX_VALUE;
+            }
+        }
+        for (int j = 0; j < points.size(); j++) {
+            dp[1 << j][j] = 0;
+        }
+        for (int mask = 0; mask < (1 << points.size()); mask++) {
+            for (int last = 0; last < points.size(); last++) {
+                if ((mask & (1 << last)) == 0) {
+                    continue;
+                }
+                for (int next = 0; next < points.size(); next++) {
+                    if ((mask & (1 << next)) > 0) {
+                        continue;
+                    }
+                    long newDist = dp[mask][last] + distances.get(points.get(last), points.get(next));
+                    if (dp[mask | (1 << next)][next] > newDist) {
+                        dp[mask | (1 << next)][next] = newDist;
+                        prev[mask | (1 << next)][next] = last;
+                    }
+                }
+            }
+        }
+        int mask = (1 << points.size()) - 1;
+        int last = 0;
+        for (int i = 1; i < points.size(); i++) {
+            if (dp[mask][last] > dp[mask][i]) {
+                last = i;
+            }
+        }
+        ArrayList<Integer> res = new ArrayList<Integer>(points);
+        for (int i = points.size() - 1; i >= 0; i--) {
+            res.set(i, last);
+            int newMask = mask - (1 << last);
+            last = prev[mask][last];
+            mask = newMask;
+        }
+        return res;
+    }
 
+    public boolean isValid(TradingPointPool tradingPointPool, int agent_id) {
+        return true;
+    }
+
+    public boolean isValid(TradingPointPool tradingPointPool) {
+        for (int i = 0; i < agents(); i++) {
+            if (!isValid(tradingPointPool, i)) {
+                return false;
+            }
+        }
         return true;
     }
 }
