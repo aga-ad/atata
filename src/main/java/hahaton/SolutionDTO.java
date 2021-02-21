@@ -67,9 +67,9 @@ public class SolutionDTO {
         String date = line[0];
         VisitDay day = VisitDay.parse(line[1]);
         int agentId = agentPool.getId(line[2]);
-        int tradingPointId = tradingPointPool.getId(line[3]);
         String tradingPointName = line[4];
         String tradingPointAddress = line[5];
+        int tradingPointId = tradingPointPool.getId(tradingPointName, tradingPointAddress);
         int arrivalTimeInMinutes = (int) InputUtils.parseMinutes(line[6]);
         int stayingTimeInMinutes = (int) InputUtils.parseMinutes(line[7]);
         int visitCount = Integer.parseInt(line[8]);

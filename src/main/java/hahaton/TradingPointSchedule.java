@@ -45,7 +45,7 @@ public class TradingPointSchedule {
         VisitDay visitDay = VisitDay.parse(line[9]);
         int agentId = agentPool.getId(line[10]);
         int stayingTimeInMinutes = Integer.parseInt(line[11]);
-        pool.getId(name);
+        pool.getId(clientName, clientAddress);
         pool.setStayingTimeInSeconds(tradingPointCode, stayingTimeInMinutes * 1000);
         return new TradingPointSchedule(tradingPointCode,
                 name,

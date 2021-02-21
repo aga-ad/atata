@@ -2,10 +2,11 @@ package hahaton;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class TradingPointPool {
-    private final Map<Integer, String> id2name;
-    private final Map<String, Integer> name2id;
+    final Map<Integer, TradingPointId> id2name;
+    private final Map<TradingPointId, Integer> name2id;
     private final Map<Integer, int[]> id2schedule;
     private final Map<Integer, Integer> id2stayingTimeInSeconds;
     private int nf;
@@ -18,16 +19,17 @@ public class TradingPointPool {
         nf = 0;
     }
 
-    public int getId(String str) {
-        if (!name2id.containsKey(str)) {
-            name2id.put(str, nf);
-            id2name.put(nf, str);
+    public int getId(String clientName, String clientAddress) {
+        TradingPointId id = new TradingPointId(clientName, clientAddress);
+        if (!name2id.containsKey(id)) {
+            name2id.put(id, nf);
+            id2name.put(nf, id);
             nf++;
         }
-        return name2id.get(str);
+        return name2id.get(id);
     }
 
-    public String getName(int id) {
+    public TradingPointId getName(int id) {
         return id2name.get(id);
     }
 
@@ -45,5 +47,37 @@ public class TradingPointPool {
 
     public int getStayingTimeInSeconds(int agentId) {
         return id2stayingTimeInSeconds.get(agentId);
+    }
+
+
+    public static final class TradingPointId {
+        public final String clientName;
+        public final String clientAddress;
+
+        public TradingPointId(String clientName, String clientAddress) {
+            this.clientName = clientName;
+            this.clientAddress = clientAddress;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            TradingPointId that = (TradingPointId) o;
+            return Objects.equals(clientName, that.clientName) && Objects.equals(clientAddress, that.clientAddress);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(clientName, clientAddress);
+        }
+
+        @Override
+        public String toString() {
+            return "TradingPointId{" +
+                    "clientName='" + clientName + '\'' +
+                    ", clientAddress='" + clientAddress + '\'' +
+                    '}';
+        }
     }
 }
