@@ -20,6 +20,8 @@ public class PenaltyCalculator {
         for (int day = 0; day < solution.days(); day++) {
             for (int agent = 0; agent < solution.agents(); agent++) {
                 var tradingPoints = solution.getTradingPoints(day, agent);
+                if (tradingPoints.isEmpty())
+                    continue; // agent is not working this day
                 var workedTimeInSeconds = 0;
                 var allTimeInSeconds = 0;
                 for (int tradingPointNumber = 0; tradingPointNumber < tradingPoints.size(); tradingPointNumber++) {

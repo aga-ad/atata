@@ -8,7 +8,7 @@ public class Solution {
     /**
      * dayid -> agentid -> tradingpoints[]
      */
-    List<Integer>[][] visits;
+    public List<Integer>[][] visits;
     ArrayList<Long> agentOfPoint;
     ArrayList<Long> totalTime;
     ArrayList<Long> workingTime;
