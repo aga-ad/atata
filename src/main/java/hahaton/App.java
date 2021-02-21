@@ -1,11 +1,17 @@
 package hahaton;
 
-import java.util.ArrayList;
-
 /**
  * Hello world!
  */
 public class App {
+
+    public static SolutionDTO getBaseLine() {
+        TradingPointPool tradingPointPool = new TradingPointPool();
+        AgentPool agentPool = new AgentPool();
+        InputUtils.getTradingPointSchedules(agentPool, tradingPointPool);
+        return InputUtils.getSolution(tradingPointPool);
+    }
+
     public static void main(String[] args) {
 
 

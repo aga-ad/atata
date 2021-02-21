@@ -1,7 +1,7 @@
 package hahaton.solutionserializer;
 
-import hahaton.*;
 import com.opencsv.CSVWriter;
+import hahaton.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
