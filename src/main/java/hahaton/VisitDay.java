@@ -1,14 +1,22 @@
 package hahaton;
 
 public enum VisitDay {
-    MONDAY,
-    TUESDAY,
-    WEDNESDAY,
-    THURSDAY,
-    FRIDAY,
-    SATURDAY,
-    SUNDAY,
-    EMPTY;
+    MONDAY("Monday", "5/18/2020"),
+    TUESDAY("Tuesday", "5/19/2020"),
+    WEDNESDAY("Wednesday", "5/20/2020"),
+    THURSDAY("Thursday", "5/21/2020"),
+    FRIDAY("Friday", "5/22/2020"),
+    SATURDAY("Saturday", "5/23/2020"),
+    SUNDAY("Sunday", "5/24/2020"),
+    EMPTY("None", "None");
+
+    public final String name;
+    public final String date;
+
+    VisitDay(String name, String date) {
+        this.name = name;
+        this.date = date;
+    }
 
     public static VisitDay parse(String str) {
         if ("".equals(str))

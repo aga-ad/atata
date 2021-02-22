@@ -26,7 +26,7 @@ public class TradingPoint {
     public static TradingPoint parse(String[] line, TradingPointPool pool) {
         int[] schedule = new int[7];
         for (int i = 0; i < 7; i++) {
-            if ("".equals(line[i + 5]))
+            if (!"".equals(line[i + 5]))
                 schedule[i] = 1;
         }
         int visitCount = 0;
