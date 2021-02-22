@@ -14,9 +14,9 @@ public class Solver {
         for (TradingPointSchedule schedule : tradingPointSchedules) {
             schedules.put(schedule.tradingPointCode, schedule);
         }
-        SimulatedAnnealingOptimization optimization = new SimulatedAnnealingOptimization(0, distances, schedules);
+        SimulatedAnnealingOptimization optimization = new SimulatedAnnealingOptimization(170, distances, schedules);
         Solution solution = optimization.simulatedAnnealing();
         System.out.println(solution);
-        SolutionsSaver.save(solution);
+        SolutionsSaver.save(solution, "annealing_solution.csv");
     }
 }

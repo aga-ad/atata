@@ -1,2 +1,10 @@
-# atata
-Secret repo!
+# Ramaximization hackathon. Планирование оптимальной территории торговых представителей
+
+## Команда **Тут татары**
+
+### Инструкия к запуску:
+
+* Solver.main - генерирует решение в файл annealing_solution.csv
+* FinalCsvGenerator.main - дополняет данные и генерирует .csv со всеми путями ТП
+* Checker.main - Проверяет решение на соответствие условия
+

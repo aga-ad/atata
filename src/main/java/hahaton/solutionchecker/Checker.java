@@ -10,7 +10,7 @@ import java.util.List;
 public class Checker {
 
     public static void main(String[] args) {
-        var fileName = "TImur_annealing_solution.csv";
+        var fileName = "annealing_solution.csv";
 
         Distances distances = InputUtils.getDistances();
 

@@ -22,8 +22,7 @@ public class SolutionsSaver {
         return "solution-raw-" + now.toString().replace(":", "-") + ".csv";
     }
 
-    public static String save(Solution solution) {
-        String fileName = genFileName();
+    public static String save(Solution solution, String fileName) {
         try (FileWriter fw = new FileWriter(fileName)) {
             System.out.println("Saving solution to " + fileName);
             CSVWriter csvFw = new CSVWriter(fw);
