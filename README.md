@@ -13,3 +13,5 @@
 #### Жадный метод: в ветке spot_pair
 
 * App.main - генерирует .csv файл с решением
+
+![MonkaHmm](monkaHmm.jpg "MonkaHmm")
